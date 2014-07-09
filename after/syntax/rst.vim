@@ -37,7 +37,7 @@ syn match rstBibliographicField `\v^\s*:(Author|Authors|Organization|Contact|Add
 
 syn match rstBlockQuoteAttr  `\v%(\_^\s*\n)@<=\s+---=\s.*`
 
-syn match   rstCommentTitle '\v(^\s+|(^\.\.\s+)@<=):=\u\w*(\s+\u\w*)*:' contained 
+syn match   rstCommentTitle '\v(^\s+|(^\.\.\s+)@<=):=\u\w*(\s+\u\w*)*:' contained
 syn cluster rstCommentGroup contains=rstCommentTitle,rstTodo
 
 
@@ -63,7 +63,7 @@ exe 'syn region rstDirective_code matchgroup=rstDirective fold '
     \.'end=#^\s\@!# contains=@NoSpell,rstCodeBlockIndicator,@rst_code'
 exe 'syn cluster rstDirectives add=rstDirective_code'
 
-" TODO Can we use dynamical loading? 
+" TODO Can we use dynamical loading?
 " parse the code name of code directives dynamicly and load the syntax file?
 for code in g:_riv_t.highlight_code
     " for performance , use $VIMRUNTIME and first in &rtp
@@ -71,18 +71,18 @@ for code in g:_riv_t.highlight_code
 
     " NOTE: As pygments are using differnet syntax name versus vim.
     " The highlight_code will contain a name pair, which is pygments|vim
-    
+
     if code =~ '[^|]\+|[^|]\+'
         let [pcode, vcode] = split(code, '|')
     else
         let [pcode, vcode] = [code, code]
     endif
-    
+
     " NOTE: the syntax_group_name must be words only.
     let scode = substitute(pcode, '[^0-9a-zA-Z]', 'x','g')
 
     let paths = split(globpath(path, "syntax/".vcode.".vim"), '\n')
-   
+
     if !empty(paths)
         let s:{vcode}path= fnameescape(paths[0])
         if filereadable(s:{vcode}path)
@@ -158,6 +158,8 @@ hi def link rstOptionList                   Statement
 hi def link rstBlockQuoteAttr               Exception
 hi def link rstCommentTitle                 SpecialComment
 
+syn match spxGlossary `\v^(\s*)\.\. glossary::\n\n\1\s+\p+`
+hi def link spxGlossary                     Statement
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
