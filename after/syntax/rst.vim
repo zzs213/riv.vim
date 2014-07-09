@@ -27,7 +27,7 @@ endfor
 call s:def_inline_char('PhaseHyperLinkReference', '`', '`__\=', '\[','\]')
 call s:def_inline_char('PhaseHyperLinkReference', '`', '`__\=', '\%(^\|\s\|[/:]\)','')
 " List: "{{{1
-syn match rstDefinitionList `\v^(\s*)\h[^:]*\ze%(\s:\s.*)*\n\1\s+\S`
+syn match rstDefinitionList `\v^(\s*)\p[^:]*\ze%(\s:\s.*)*\n\1\s+\S`
 syn match rstBulletList `\v^\s*[-*+]\ze\s+`
 syn match rstEnumeratedList `\v\c^\s*%(\d+|[#a-z]|[imlcxvd]+)[.)]\ze\s+`
 syn match rstEnumeratedList `\v\c^\s*\(%(\d+|[#a-z]|[imlcxvd]+)\)\ze\s+`
