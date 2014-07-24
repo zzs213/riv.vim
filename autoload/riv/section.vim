@@ -181,8 +181,10 @@ fun! s:reflize(str) "{{{
     " referenceizing the string
     " trim whitespace and add '_' or '`..`_'
     let title = s:trim(a:str)
-    return len(split(title)) == 1 ?  title.'_' 
-                \ : '`'.title.'`'.'_'
+    if len(split(title)) == 1 && match(title, '[^\x00-\xff]') == -1
+        return title.'_'
+    endif
+    return '`'.title.'`'.'_'
 endfun "}}}
 fun! s:content_line(row) "{{{
     " content line is composed with three objects.
