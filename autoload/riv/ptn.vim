@@ -407,7 +407,7 @@ fun! riv#ptn#init() "{{{
     " `xxx xx`_
     "  xxx__
     " [#]_ [*]_  [#xxx]_  [3]_    and citation [xxxx]_
-    let ref_name = '[[:alnum:]]+%([_.-][[:alnum:]]+)*'
+    let ref_name = '[^ \t_.-]+%([_.-][^ \t_.-]+)*'
     let ref_end = '%($|\s|[''")\]}>/:.,;!?\\-])'
 
     let s:p.ref_name = ref_name
